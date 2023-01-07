@@ -48,7 +48,7 @@ describe('Creating a comment should work', async () => {
     const result = await response.json();
 
     // expect id should exist
-    result.id.must.not.be.null();
+    result.commentId.must.not.be.null();
     // all new values should be equal to properties of new blog
     result.text.must.be.equal(newComment.text);
     // expect dates to be not null
