@@ -1,6 +1,6 @@
 import { getDB } from '../../utils/db/index.js';
 
-export const getComments = async (request, reply) => {
+export const getManyComment = async (request, reply) => {
   const { params, query } = request;
   const { blogId: id } = params;
   const { limit = 5 } = query;
