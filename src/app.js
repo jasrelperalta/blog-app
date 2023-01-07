@@ -1,5 +1,6 @@
 import Fastify from 'fastify';
 import { createBlog } from './services/blogs/create-blog.js';
+import { getBlog } from './services/blogs/get-blog.js';
 import { getManyBlog } from './services/blogs/get-many-blog.js';
 import { general } from './services/general/index.js';
 
@@ -16,6 +17,8 @@ export async function build () {
   fastify.post(`${prefix}/blog`, createBlog);
   // get many blogs
   fastify.get(`${prefix}/blog`, getManyBlog);
+  // get a blog
+  fastify.get(`${prefix}/blog/:blogId`, getBlog);
 
   return fastify;
 }
