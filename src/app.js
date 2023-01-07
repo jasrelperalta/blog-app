@@ -1,5 +1,7 @@
 import Fastify from 'fastify';
+import sensible from '@fastify/sensible';
 import { createBlog } from './services/blogs/create-blog.js';
+import { deleteBlog } from './services/blogs/delete-blog.js';
 import { getBlog } from './services/blogs/get-blog.js';
 import { getManyBlog } from './services/blogs/get-many-blog.js';
 import { updateBlog } from './services/blogs/update-blog.js';
@@ -10,6 +12,7 @@ const prefix = '/api';
 export async function build () {
   // initialize fastify
   const fastify = Fastify({ logger: true });
+  fastify.register(sensible);
 
   // returns { success : true }from /general/index.js
   fastify.get(prefix, general);
@@ -22,6 +25,8 @@ export async function build () {
   fastify.get(`${prefix}/blog/:blogId`, getBlog);
   // update a blog
   fastify.put(`${prefix}/blog/:blogId`, updateBlog);
+  // delete a blog
+  fastify.delete(`${prefix}/blog/:blogId`, deleteBlog);
 
   return fastify;
 }
