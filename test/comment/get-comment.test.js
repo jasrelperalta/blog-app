@@ -1,0 +1,64 @@
+import tap from 'tap';
+import { build } from '../../src/app.js';
+import 'must/register.js';
+
+tap.mochaGlobals();
+
+const prefix = '/api';
+
+describe('Getting a comment should work', async () => {
+  let app;
+
+  before(async () => {
+    app = await build();
+  });
+
+  it('should return the created object with uuid', async () => {
+    const newBlog = {
+      title: 'New Blog to get comment from test',
+      desc: 'New Description to get comment from test'
+    };
+    const createBlog = await app.inject({
+      method: 'POST',
+      url: `${prefix}/blog`,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newBlog)
+    });
+
+    const { id: blogId } = await createBlog.json();
+
+    const newComment = {
+      text: 'New Comment to update comment from test'
+    };
+
+    const createComment = await app.inject({
+      method: 'POST',
+      url: `${prefix}/blog/${blogId}/comment`,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newComment)
+    });
+
+    const { commentId } = await createComment.json();
+
+    const response = await app.inject({
+      method: 'GET',
+      url: `${prefix}/blog/${blogId}/comment/${commentId}`
+    });
+
+    // checks if status code is 200
+    response.statusCode.must.be.equal(200);
+    const result = await response.json();
+
+    // expect id should exist
+    result.commentId.must.equal(commentId);
+    // all new values should be equal to properties of new comment
+    result.text.must.be.equal(newComment.text);
+    // expect dates to be not null
+    result.createdDate.must.not.be.null();
+    result.updatedDate.must.not.be.null();
+  });
+});
