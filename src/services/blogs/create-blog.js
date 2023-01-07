@@ -3,7 +3,7 @@ import { v4 } from 'uuid';
 
 export const createBlog = async (request, reply) => {
   const { body } = request;
-  const { title, desc } = body;
+  const { title, desc, comments = {} } = body;
   const db = await getDB();
 
   const id = v4();
@@ -11,6 +11,7 @@ export const createBlog = async (request, reply) => {
   const blog = {
     title,
     desc,
+    comments,
     createdDate: new Date().getTime(),
     updatedDate: new Date().getTime()
   };
