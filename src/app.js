@@ -8,6 +8,7 @@ import { updateBlog } from './services/blogs/update-blog.js';
 import { general } from './services/general/index.js';
 import { createComment } from './services/comments/create-comment.js';
 import { getComments } from './services/comments/get-comments.js';
+import { updateComment } from './services/comments/update-comment.js';
 
 const prefix = '/api';
 
@@ -34,6 +35,8 @@ export async function build () {
   fastify.post(`${prefix}/blog/:blogId/comment`, createComment);
   // get comments of a blog
   fastify.get(`${prefix}/blog/:blogId/comment`, getComments);
+  // get comments of a blog
+  fastify.put(`${prefix}/blog/:blogId/comment/:commentId`, updateComment);
 
   return fastify;
 }

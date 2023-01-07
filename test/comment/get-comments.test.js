@@ -56,7 +56,7 @@ describe('Getting comments of a blog should work', async () => {
     });
 
     const newComment3 = {
-      text: 'Newer Comment 2 to get comment from test'
+      text: 'Newer Comment 3 to get comment from test'
     };
 
     const createComment3 = await app.inject({
@@ -69,7 +69,7 @@ describe('Getting comments of a blog should work', async () => {
     });
 
     const newComment4 = {
-      text: 'Newer Comment 2 to get comment from test'
+      text: 'Newer Comment 4 to get comment from test'
     };
 
     const createComment4 = await app.inject({
@@ -82,7 +82,7 @@ describe('Getting comments of a blog should work', async () => {
     });
 
     const newComment5 = {
-      text: 'Newer Comment 2 to get comment from test'
+      text: 'Newer Comment 5 to get comment from test'
     };
 
     const createComment5 = await app.inject({
@@ -95,7 +95,7 @@ describe('Getting comments of a blog should work', async () => {
     });
 
     const newComment6 = {
-      text: 'Newer Comment 2 to get comment from test'
+      text: 'Newer Comment 6 to get comment from test'
     };
 
     const createComment6 = await app.inject({

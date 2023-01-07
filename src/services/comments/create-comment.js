@@ -20,7 +20,7 @@ export const createComment = async (request, reply) => {
   await saveDB(db);
 
   return {
-    id,
+    commentId,
     ...db.blogs[id].comments[commentId]
   };
 };
