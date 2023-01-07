@@ -7,8 +7,10 @@ import { getManyBlog } from './services/blogs/get-many-blog.js';
 import { updateBlog } from './services/blogs/update-blog.js';
 import { general } from './services/general/index.js';
 import { createComment } from './services/comments/create-comment.js';
-import { getComments } from './services/comments/get-comments.js';
+import { getManyComment } from './services/comments/get-many-comment.js';
 import { updateComment } from './services/comments/update-comment.js';
+import { getComment } from './services/comments/get-comment.js';
+import { deleteComment } from './services/comments/delete-comment.js';
 
 const prefix = '/api';
 
@@ -34,9 +36,13 @@ export async function build () {
   // create comment
   fastify.post(`${prefix}/blog/:blogId/comment`, createComment);
   // get comments of a blog
-  fastify.get(`${prefix}/blog/:blogId/comment`, getComments);
+  fastify.get(`${prefix}/blog/:blogId/comment`, getManyComment);
+  // get a comment of a blog
+  fastify.get(`${prefix}/blog/:blogId/comment/:commentId`, getComment);
   // get comments of a blog
   fastify.put(`${prefix}/blog/:blogId/comment/:commentId`, updateComment);
+  // delete a comment of a blog
+  fastify.delete(`${prefix}/blog/:blogId/comment/:commentId`, deleteComment);
 
   return fastify;
 }
