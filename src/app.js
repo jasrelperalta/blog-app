@@ -2,6 +2,8 @@ import Fastify from 'fastify';
 import sensible from '@fastify/sensible';
 import openAPIGlue from 'fastify-openapi-glue';
 import swagger from '@fastify/swagger';
+import { specification } from './specification/index.js';
+import { Service } from './services/index.js';
 
 const prefix = '/api';
 
@@ -10,19 +12,23 @@ export async function build () {
   const fastify = Fastify({ logger: true });
   fastify.register(sensible);
 
+  const service = new Service();
+
   const openAPIGlueOptions = {
+    specification,
+    service,
     prefix
   };
 
   const swaggerOptions = {
+    openapi: specification,
+    routePrefix: '/docs',
     exposeRoute: true
   };
-
 
   fastify.register(swagger, swaggerOptions);
   fastify.register(openAPIGlue, openAPIGlueOptions);
 
-  
   // // returns { success : true }from /general/index.js
   // fastify.get(prefix, general);
 
