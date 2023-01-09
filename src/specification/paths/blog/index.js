@@ -32,12 +32,7 @@ export const blog = {
       operationId: 'getManyBlog',
       parameters: [
         {
-          name: 'limit',
-          in: 'query',
-          description: 'Number of items to be returned',
-          schema: {
-            type: 'number'
-          }
+          $ref: '#/components/parameters/GetBlogLimit'
         }
       ],
       responses: {
@@ -46,7 +41,7 @@ export const blog = {
           content: {
             'application/json': {
               schema: {
-                $ref: '#/components/schemas/GetManyBlogReplyObject'
+                $ref: '#/components/schemas/GetManyBlogResponseObject'
               }
             }
           }
@@ -56,14 +51,14 @@ export const blog = {
     }
   },
   '/blog/:blogId': {
+    parameters: [
+      {
+        $ref: '#/components/parameters/BlogParameterId'
+      }
+    ],
     get: {
       summary: 'Get a blog entry',
       operationId: 'getBlog',
-      parameters: [
-        {
-          $ref: '#/components/parameters/BlogParameterId'
-        }
-      ],
       responses: {
         200: {
           description: 'A blog entry',
@@ -80,11 +75,6 @@ export const blog = {
     put: {
       summary: 'Update a blog entry',
       operationId: 'updateBlog',
-      parameters: [
-        {
-          $ref: '#/components/parameters/BlogParameterId'
-        }
-      ],
       requestBody: {
         description: 'The request body for the blog',
         content: {
@@ -112,11 +102,6 @@ export const blog = {
     delete: {
       summary: 'Delete a blog entry',
       operationId: 'deleteBlog',
-      parameters: [
-        {
-          $ref: '#/components/parameters/BlogParameterId'
-        }
-      ],
       responses: {
         200: {
           description: 'successful response',
