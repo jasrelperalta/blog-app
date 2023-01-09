@@ -39,7 +39,7 @@ export const schemas = {
       }
     }
   },
-  GetManyBlogReplyObject: {
+  GetManyBlogResponseObject: {
     type: 'array',
     items: {
       properties: {
@@ -50,6 +50,25 @@ export const schemas = {
           type: 'string'
         },
         desc: {
+          type: 'string'
+        },
+        createdDate: {
+          type: 'number'
+        },
+        updatedDate: {
+          type: 'number'
+        }
+      }
+    }
+  },
+  GetManyCommentResponseObject: {
+    type: 'array',
+    items: {
+      properties: {
+        id: {
+          type: 'string'
+        },
+        text: {
           type: 'string'
         },
         createdDate: {
