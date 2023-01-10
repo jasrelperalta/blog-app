@@ -26,14 +26,7 @@ export const comment = {
       },
       responses: {
         200: {
-          description: 'A comment',
-          content: {
-            'application/json': {
-              schema: {
-                $ref: '#/components/schemas/CommentObject'
-              }
-            }
-          }
+          $ref: '#/components/responses/SuccessfulCommentResponse'
         }
       }
     },
@@ -73,14 +66,7 @@ export const comment = {
       operationId: 'getComment',
       responses: {
         200: {
-          description: 'A comment',
-          content: {
-            'application/json': {
-              schema: {
-                $ref: '#/components/schemas/CommentObject'
-              }
-            }
-          }
+          $ref: '#/components/responses/SuccessfulCommentResponse'
         }
       }
     },
@@ -100,14 +86,7 @@ export const comment = {
       },
       responses: {
         200: {
-          description: 'A comment',
-          content: {
-            'application/json': {
-              schema: {
-                $ref: '#/components/schemas/CommentObject'
-              }
-            }
-          }
+          $ref: '#/components/responses/SuccessfulCommentResponse'
         }
       }
     },
@@ -116,19 +95,7 @@ export const comment = {
       operationId: 'deleteComment',
       responses: {
         200: {
-          description: 'successful response',
-          content: {
-            'application/json': {
-              schema: {
-                type: 'object',
-                properties: {
-                  success: {
-                    type: 'boolean'
-                  }
-                }
-              }
-            }
-          }
+          $ref: '#/components/responses/SuccessfulResponse'
         }
       }
     }
