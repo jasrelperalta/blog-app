@@ -6,6 +6,13 @@
       "lastName": "Wells",
       "createdDate": 1673359312722,
       "updatedDate": 1673359312722
+    },
+    "jas": {
+      "hashedPassword": "$2b$10$HOrHACiOsocUvJ38V.lBDu7DpnX6WjOm/0p6hIdIvITaLZIMcGod.",
+      "firstName": "ro",
+      "lastName": "by",
+      "createdDate": 1673371809149,
+      "updatedDate": 1673371809149
     }
   },
   "blogs": {
