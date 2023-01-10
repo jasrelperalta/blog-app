@@ -1,6 +1,5 @@
 import { getDB, saveDB } from '../../utils/db/index.js';
-import { hash } from 'bcrypt';
-import { compare } from 'bcrypt';
+import { hash, compare } from 'bcrypt';
 
 const saltRound = 10;
 
@@ -11,7 +10,7 @@ export const changePassword = async (request, reply) => {
   const newHashedPassword = await hash(newPassword, saltRound);
 
   const db = await getDB();
-  
+
   if (inputUser !== username) {
     return reply.unauthorized('Invalid username');
   }
