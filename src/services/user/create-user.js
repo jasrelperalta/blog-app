@@ -11,6 +11,10 @@ export const createUser = async (request, reply) => {
 
   const db = await getDB();
 
+  if (db.users[username]) {
+    return reply.badRequest('Username already exists');
+  }
+
   const user = {
     hashedPassword,
     firstName,
