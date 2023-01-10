@@ -17,6 +17,15 @@ export const parameters = {
       type: 'string'
     }
   },
+  UserParameterId: {
+    name: 'userId',
+    in: 'path',
+    required: true,
+    description: 'Id of user',
+    schema: {
+      type: 'string'
+    }
+  },
   GetBlogLimit: {
     name: 'limit',
     in: 'query',

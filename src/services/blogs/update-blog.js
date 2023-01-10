@@ -1,10 +1,15 @@
 import { getDB, saveDB } from '../../utils/db/index.js';
 
 export const updateBlog = async (request, reply) => {
-  const { params, body } = request;
+  const { params, body, username } = request;
   const { blogId: id } = params;
   const { title, desc, comments } = body;
+
   const db = await getDB();
+
+  if (db.blogs[id].username !== username) {
+    return reply.forbidden('Not the blog author');
+  }
 
   db.blogs[id].title = title || db.blogs[id].title;
   db.blogs[id].desc = desc || db.blogs[id].desc;

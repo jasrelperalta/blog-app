@@ -1,5 +1,5 @@
 import tap from 'tap';
-import { build } from '../../src/app.js';
+import { build } from '../../../src/app.js';
 import 'must/register.js';
 import Chance from 'chance';
 
@@ -9,12 +9,8 @@ tap.mochaGlobals();
 
 const prefix = '/api';
 
-describe('Logging out a user should work', async () => {
+describe('Getting a comment should work', async () => {
   let app;
-
-  before(async () => {
-    app = await build();
-  });
 
   const newUser = {
     username: chance.email({ domain: 'example.com' }),
@@ -24,6 +20,12 @@ describe('Logging out a user should work', async () => {
   };
 
   let cookie = '';
+
+  before(async () => {
+    app = await build({
+      forceCloseConnections: true
+    });
+  });
 
   it('should return the created user object', async () => {
     const response = await app.inject({
@@ -38,8 +40,6 @@ describe('Logging out a user should work', async () => {
     // checks if status code is 200
     response.statusCode.must.be.equal(200);
     const result = await response.json();
-
-    // all new values should be equal to properties of new blog
     result.username.must.be.equal(newUser.username);
     result.firstName.must.be.equal(newUser.firstName);
     result.lastName.must.be.equal(newUser.lastName);
@@ -50,7 +50,7 @@ describe('Logging out a user should work', async () => {
   it('login should work', async () => {
     const response = await app.inject({
       method: 'POST',
-      url: `${prefix}/user/login`,
+      url: `${prefix}/login`,
       headers: {
         'Content-Type': 'application/json'
       },
@@ -67,29 +67,61 @@ describe('Logging out a user should work', async () => {
 
     cookie = response.headers['set-cookie'];
   });
-  it('logout should work', async () => {
-    const response = await app.inject({
-      method: 'GET',
-      url: `${prefix}/user/logout`,
+
+  it('should return the created object with uuid', async () => {
+    const newBlog = {
+      title: 'New Blog to get comment from test',
+      desc: 'New Description to get comment from test'
+    };
+    const createBlog = await app.inject({
+      method: 'POST',
+      url: `${prefix}/blog`,
       headers: {
         'Content-Type': 'application/json',
         cookie
-      }
+      },
+      body: JSON.stringify(newBlog)
     });
 
-    // checks if status code is 200
-    response.statusCode.must.be.equal(200);
-  });
-  it('logout should return error 401, no cookie', async () => {
+    const { id: blogId } = await createBlog.json();
+
+    const newComment = {
+      text: 'New Comment to update comment from test'
+    };
+
+    const createComment = await app.inject({
+      method: 'POST',
+      url: `${prefix}/blog/${blogId}/comment`,
+      headers: {
+        'Content-Type': 'application/json',
+        cookie
+      },
+      body: JSON.stringify(newComment)
+    });
+
+    const { commentId } = await createComment.json();
+
     const response = await app.inject({
       method: 'GET',
-      url: `${prefix}/user/logout`,
       headers: {
-        'Content-Type': 'application/json'
-      }
+        cookie
+      },
+      url: `${prefix}/blog/${blogId}/comment/${commentId}`
     });
 
     // checks if status code is 200
     response.statusCode.must.be.equal(200);
+    const result = await response.json();
+
+    // expect id should exist
+    result.commentId.must.equal(commentId);
+    // all new values should be equal to properties of new comment
+    result.text.must.be.equal(newComment.text);
+    // expect dates to be not null
+    result.createdDate.must.not.be.null();
+    result.updatedDate.must.not.be.null();
+  });
+  after(async () => {
+    await app.close();
   });
 });

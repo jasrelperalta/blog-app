@@ -48,5 +48,15 @@ export const responses = {
         }
       }
     }
+  },
+  SuccessfulUserDataResponse: {
+    description: 'Successful user data response',
+    content: {
+      'application/json': {
+        schema: {
+          $ref: '#/components/schemas/UserObject'
+        }
+      }
+    }
   }
 };
