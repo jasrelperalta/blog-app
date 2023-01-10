@@ -187,7 +187,7 @@ describe('Deleting a blog should work', async () => {
       url: `${prefix}/blog/${id}`
     });
 
-    // checks if status code is 200
+    // checks if status code is 403
     response.statusCode.must.be.equal(403);
   });
   after(async () => {
