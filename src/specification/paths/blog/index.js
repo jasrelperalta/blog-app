@@ -20,7 +20,9 @@ export const blog = {
         }
       },
       security: [
-        {}
+        {
+          cookieAuth: []
+        }
       ]
     },
     get: {
@@ -44,7 +46,9 @@ export const blog = {
         }
       },
       security: [
-        {}
+        {
+          cookieAuth: []
+        }
       ]
     }
   },
@@ -63,7 +67,9 @@ export const blog = {
         }
       },
       security: [
-        {}
+        {
+          cookieAuth: []
+        }
       ]
     },
     put: {
@@ -86,7 +92,9 @@ export const blog = {
         }
       },
       security: [
-        {}
+        {
+          cookieAuth: []
+        }
       ]
     },
     delete: {
@@ -98,7 +106,9 @@ export const blog = {
         }
       },
       security: [
-        {}
+        {
+          cookieAuth: []
+        }
       ]
     }
   }

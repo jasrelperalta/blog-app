@@ -16,7 +16,28 @@ export const user = {
       ]
     }
   },
-  '/user/login': {
+  '/user/:userId': {
+    get: {
+      summary: 'Gets user data',
+      operationId: 'getUser',
+      parameters: [
+        {
+          $ref: '#/components/parameters/UserParameterId'
+        }
+      ],
+      responses: {
+        200: {
+          $ref: '#/components/responses/SuccessfulUserDataResponse'
+        }
+      },
+      security: [
+        {
+          cookieAuth: []
+        }
+      ]
+    }
+  },
+  '/login': {
     post: {
       summary: 'Logs in a user',
       operationId: 'login',
@@ -33,7 +54,7 @@ export const user = {
       ]
     }
   },
-  '/user/logout': {
+  '/logout': {
     get: {
       summary: 'Logs out a user',
       operationId: 'logout',

@@ -30,7 +30,9 @@ export const comment = {
         }
       },
       security: [
-        {}
+        {
+          cookieAuth: []
+        }
       ]
     },
     get: {
@@ -54,7 +56,9 @@ export const comment = {
         }
       },
       security: [
-        {}
+        {
+          cookieAuth: []
+        }
       ]
     }
   },
@@ -76,7 +80,9 @@ export const comment = {
         }
       },
       security: [
-        {}
+        {
+          cookieAuth: []
+        }
       ]
     },
     put: {
@@ -99,7 +105,9 @@ export const comment = {
         }
       },
       security: [
-        {}
+        {
+          cookieAuth: []
+        }
       ]
     },
     delete: {
@@ -111,7 +119,9 @@ export const comment = {
         }
       },
       security: [
-        {}
+        {
+          cookieAuth: []
+        }
       ]
     }
   }
