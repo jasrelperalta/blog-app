@@ -204,6 +204,20 @@ export const schemas = {
       }
     }
   },
+  EditUserRequestObject: {
+    type: 'object',
+    properties: {
+      newUsername: {
+        type: 'string'
+      },
+      newFirstName: {
+        type: 'string'
+      },
+      newLastName: {
+        type: 'string'
+      }
+    }
+  },
   ChangePasswordObject: {
     type: 'object',
     required: [

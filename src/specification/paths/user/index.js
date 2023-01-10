@@ -17,14 +17,31 @@ export const user = {
     }
   },
   '/user/:userId': {
+    parameters: [
+      {
+        $ref: '#/components/parameters/UserParameterId'
+      }
+    ],
     get: {
       summary: 'Gets user data',
       operationId: 'getUser',
-      parameters: [
-        {
-          $ref: '#/components/parameters/UserParameterId'
+      responses: {
+        200: {
+          $ref: '#/components/responses/SuccessfulUserDataResponse'
         }
-      ],
+      },
+      security: [
+        {
+          cookieAuth: []
+        }
+      ]
+    },
+    put: {
+      summary: 'Edit own user data',
+      operationId: 'editUser',
+      requestBody: {
+        $ref: '#/components/requestBodies/RequestEditUser'
+      },
       responses: {
         200: {
           $ref: '#/components/responses/SuccessfulUserDataResponse'

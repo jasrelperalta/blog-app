@@ -28,5 +28,15 @@ export const requestBodies = {
         }
       }
     }
+  },
+  RequestEditUser: {
+    description: 'The request body of editing user data',
+    content: {
+      'application/json': {
+        schema: {
+          $ref: '#/components/schemas/EditUserRequestObject'
+        }
+      }
+    }
   }
 };
