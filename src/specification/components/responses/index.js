@@ -44,12 +44,7 @@ export const responses = {
     content: {
       'application/json': {
         schema: {
-          type: 'object',
-          properties: {
-            success: {
-              type: 'boolean'
-            }
-          }
+          $ref: '#/components/schemas/SuccessfulObject'
         }
       }
     }

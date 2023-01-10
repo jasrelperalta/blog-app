@@ -8,5 +8,15 @@ export const requestBodies = {
         }
       }
     }
+  },
+  RequestLogin: {
+    description: 'Logs in a user',
+    content: {
+      'application/json': {
+        schema: {
+          $ref: '#/components/schemas/LoginObject'
+        }
+      }
+    }
   }
 };
