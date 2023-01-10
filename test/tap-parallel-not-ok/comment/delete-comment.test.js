@@ -50,7 +50,7 @@ describe('Deleting a blog should work', async () => {
   it('login should work', async () => {
     const response = await app.inject({
       method: 'POST',
-      url: `${prefix}/user/login`,
+      url: `${prefix}/login`,
       headers: {
         'Content-Type': 'application/json'
       },
