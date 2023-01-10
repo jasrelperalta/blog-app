@@ -28,7 +28,10 @@ export const comment = {
         200: {
           $ref: '#/components/responses/SuccessfulCommentResponse'
         }
-      }
+      },
+      security: [
+        {}
+      ]
     },
     get: {
       summary: 'Get many comments of a blog',
@@ -49,7 +52,10 @@ export const comment = {
             }
           }
         }
-      }
+      },
+      security: [
+        {}
+      ]
     }
   },
   '/blog/:blogId/comment/:commentId': {
@@ -68,7 +74,10 @@ export const comment = {
         200: {
           $ref: '#/components/responses/SuccessfulCommentResponse'
         }
-      }
+      },
+      security: [
+        {}
+      ]
     },
     put: {
       summary: 'Update a comment of a blog',
@@ -88,7 +97,10 @@ export const comment = {
         200: {
           $ref: '#/components/responses/SuccessfulCommentResponse'
         }
-      }
+      },
+      security: [
+        {}
+      ]
     },
     delete: {
       summary: 'Delete a comment of a blog',
@@ -97,7 +109,10 @@ export const comment = {
         200: {
           $ref: '#/components/responses/SuccessfulResponse'
         }
-      }
+      },
+      security: [
+        {}
+      ]
     }
   }
 };

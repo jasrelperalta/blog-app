@@ -1,5 +1,5 @@
 import { paths } from './paths/index.js';
-import { components } from './compoonents/index.js';
+import { components } from './components/index.js';
 
 export const specification = {
   openapi: '3.0.0',
@@ -8,5 +8,10 @@ export const specification = {
     version: '1.0.0'
   },
   paths,
-  components
+  components,
+  security: [
+    {
+      cookieAuth: []
+    }
+  ]
 };

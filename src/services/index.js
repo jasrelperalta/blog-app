@@ -10,6 +10,8 @@ import { updateComment } from './comments/update-comment.js';
 import { getComment } from './comments/get-comment.js';
 import { deleteComment } from './comments/delete-comment.js';
 import { createUser } from './user/create-user.js';
+import { login } from './user/login.js';
+import { logout } from './user/logout.js';
 
 export class Service {
   constructor (app) {
@@ -28,4 +30,6 @@ export class Service {
   getManyComment = getManyComment
   updateComment = updateComment
   createUser = createUser
+  login = login
+  logout = logout
 }

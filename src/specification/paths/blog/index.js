@@ -18,7 +18,10 @@ export const blog = {
         200: {
           $ref: '#/components/responses/SuccessfulBlogResponse'
         }
-      }
+      },
+      security: [
+        {}
+      ]
     },
     get: {
       summary: 'Get many blog entries',
@@ -39,8 +42,10 @@ export const blog = {
             }
           }
         }
-
-      }
+      },
+      security: [
+        {}
+      ]
     }
   },
   '/blog/:blogId': {
@@ -56,7 +61,10 @@ export const blog = {
         200: {
           $ref: '#/components/responses/SuccessfulGetBlogResponse'
         }
-      }
+      },
+      security: [
+        {}
+      ]
     },
     put: {
       summary: 'Update a blog entry',
@@ -76,7 +84,10 @@ export const blog = {
         200: {
           $ref: '#/components/responses/SuccessfulBlogResponse'
         }
-      }
+      },
+      security: [
+        {}
+      ]
     },
     delete: {
       summary: 'Delete a blog entry',
@@ -85,7 +96,10 @@ export const blog = {
         200: {
           $ref: '#/components/responses/SuccessfulResponse'
         }
-      }
+      },
+      security: [
+        {}
+      ]
     }
   }
 };
