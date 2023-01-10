@@ -25,10 +25,30 @@ export const schemas = {
   CommentObject: {
     type: 'object',
     properties: {
-      id: {
+      commentId: {
         type: 'string'
       },
       text: {
+        type: 'string'
+      },
+      createdDate: {
+        type: 'number'
+      },
+      updatedDate: {
+        type: 'number'
+      }
+    }
+  },
+  GetBlogResponseObject: {
+    type: 'object',
+    properties: {
+      id: {
+        type: 'string'
+      },
+      title: {
+        type: 'string'
+      },
+      desc: {
         type: 'string'
       },
       createdDate: {
@@ -125,6 +145,55 @@ export const schemas = {
     ],
     properties: {
       text: {
+        type: 'string'
+      },
+      createdDate: {
+        type: 'number'
+      },
+      updatedDate: {
+        type: 'number'
+      }
+    }
+  },
+  UserObject: {
+    type: 'object',
+    properties: {
+      username: {
+        type: 'string'
+      },
+      firstName: {
+        type: 'string'
+      },
+      lastName: {
+        type: 'string'
+      },
+      createdDate: {
+        type: 'number'
+      },
+      updatedDate: {
+        type: 'number'
+      }
+    }
+  },
+  UserRequestObject: {
+    type: 'object',
+    required: [
+      'username',
+      'password',
+      'firstName',
+      'lastName'
+    ],
+    properties: {
+      username: {
+        type: 'string'
+      },
+      password: {
+        type: 'string'
+      },
+      firstName: {
+        type: 'string'
+      },
+      lastName: {
         type: 'string'
       },
       createdDate: {

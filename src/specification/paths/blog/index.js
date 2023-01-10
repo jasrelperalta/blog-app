@@ -16,14 +16,7 @@ export const blog = {
       },
       responses: {
         200: {
-          description: 'A blog entry',
-          content: {
-            'application/json': {
-              schema: {
-                $ref: '#/components/schemas/BlogObject'
-              }
-            }
-          }
+          $ref: '#/components/responses/SuccessfulBlogResponse'
         }
       }
     },
@@ -61,14 +54,7 @@ export const blog = {
       operationId: 'getBlog',
       responses: {
         200: {
-          description: 'A blog entry',
-          content: {
-            'application/json': {
-              schema: {
-                $ref: '#/components/schemas/BlogObject'
-              }
-            }
-          }
+          $ref: '#/components/responses/SuccessfulGetBlogResponse'
         }
       }
     },
@@ -88,14 +74,7 @@ export const blog = {
       },
       responses: {
         200: {
-          description: 'A blog entry',
-          content: {
-            'application/json': {
-              schema: {
-                $ref: '#/components/schemas/BlogObject'
-              }
-            }
-          }
+          $ref: '#/components/responses/SuccessfulBlogResponse'
         }
       }
     },
@@ -104,19 +83,7 @@ export const blog = {
       operationId: 'deleteBlog',
       responses: {
         200: {
-          description: 'successful response',
-          content: {
-            'application/json': {
-              schema: {
-                type: 'object',
-                properties: {
-                  success: {
-                    type: 'boolean'
-                  }
-                }
-              }
-            }
-          }
+          $ref: '#/components/responses/SuccessfulResponse'
         }
       }
     }
