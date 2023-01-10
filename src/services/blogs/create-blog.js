@@ -2,7 +2,7 @@ import { getDB, saveDB } from '../../utils/db/index.js';
 import { v4 } from 'uuid';
 
 export const createBlog = async (request, reply) => {
-  const { body } = request;
+  const { body, username } = request;
   const { title, desc, comments = {} } = body;
   const db = await getDB();
 
@@ -12,6 +12,7 @@ export const createBlog = async (request, reply) => {
     title,
     desc,
     comments,
+    username,
     createdDate: new Date().getTime(),
     updatedDate: new Date().getTime()
   };
