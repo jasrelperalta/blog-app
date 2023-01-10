@@ -9,6 +9,7 @@ import { getManyComment } from './comments/get-many-comment.js';
 import { updateComment } from './comments/update-comment.js';
 import { getComment } from './comments/get-comment.js';
 import { deleteComment } from './comments/delete-comment.js';
+import { createUser } from './user/create-user.js';
 
 export class Service {
   constructor (app) {
@@ -26,4 +27,5 @@ export class Service {
   getComment = getComment
   getManyComment = getManyComment
   updateComment = updateComment
+  createUser = createUser
 }
