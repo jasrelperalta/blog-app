@@ -1,5 +1,5 @@
 import tap from 'tap';
-import { build } from '../../src/app.js';
+import { build } from '../../../src/app.js';
 import 'must/register.js';
 import Chance from 'chance';
 
@@ -13,7 +13,9 @@ describe('Logging in a user should work', async () => {
   let app;
 
   before(async () => {
-    app = await build();
+    app = await build({
+      forceCloseConnections: true
+    });
   });
 
   const newUser = {
@@ -98,5 +100,8 @@ describe('Logging in a user should work', async () => {
 
     // checks if status code is 200
     response.statusCode.must.be.equal(401);
+  });
+  after(async () => {
+    await app.close();
   });
 });

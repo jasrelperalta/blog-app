@@ -1,5 +1,5 @@
 import tap from 'tap';
-import { getDB, saveDB } from '../../src/utils/db/index.js';
+import { getDB, saveDB } from '../../../src/utils/db/index.js';
 import 'must/register.js';
 
 tap.mochaGlobals();
