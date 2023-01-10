@@ -42,11 +42,11 @@ describe('Updating comments of a blog should work', async () => {
       body: JSON.stringify(newComment)
     });
 
+    const { commentId, createdDate, updatedDate } = await createComment.json();
+
     const newerComment = {
       text: 'Updated comment from test'
     };
-
-    const { commentId, createdDate, updatedDate } = await createComment.json();
 
     const response = await app.inject({
       method: 'PUT',
