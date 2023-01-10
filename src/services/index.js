@@ -13,6 +13,7 @@ import { createUser } from './user/create-user.js';
 import { login } from './user/login.js';
 import { logout } from './user/logout.js';
 import { getUser } from './user/get-user.js';
+import { changePassword } from './user/change-password.js';
 
 export class Service {
   constructor (app) {
@@ -24,6 +25,7 @@ export class Service {
   login = login
   logout = logout
   getUser = getUser
+  changePassword = changePassword
   createBlog = createBlog
   deleteBlog = deleteBlog
   getBlog = getBlog

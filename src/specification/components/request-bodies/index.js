@@ -10,11 +10,21 @@ export const requestBodies = {
     }
   },
   RequestLogin: {
-    description: 'Logs in a user',
+    description: 'Request body for logging in a user',
     content: {
       'application/json': {
         schema: {
           $ref: '#/components/schemas/LoginObject'
+        }
+      }
+    }
+  },
+  RequestChangePassword: {
+    description: 'The request body of changing own password of user',
+    content: {
+      'application/json': {
+        schema: {
+          $ref: '#/components/schemas/ChangePasswordObject'
         }
       }
     }

@@ -204,6 +204,24 @@ export const schemas = {
       }
     }
   },
+  ChangePasswordObject: {
+    type: 'object',
+    required: [
+      'oldPassword',
+      'newPassword'
+    ],
+    properties: {
+      username: {
+        type: 'string'
+      },
+      oldPassword: {
+        type: 'string'
+      },
+      newPassword: {
+        type: 'string'
+      }
+    }
+  },
   LoginObject: {
     type: 'object',
     properties: {

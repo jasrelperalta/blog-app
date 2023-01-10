@@ -69,5 +69,25 @@ export const user = {
         }
       ]
     }
+  },
+  '/change-password': {
+    // put instead of post
+    put: {
+      summary: 'Changes own password of user',
+      operationId: 'changePassword',
+      requestBody: {
+        $ref: '#/components/requestBodies/RequestChangePassword'
+      },
+      responses: {
+        200: {
+          $ref: '#/components/responses/SuccessfulResponse'
+        }
+      },
+      security: [
+        {
+          cookieAuth: []
+        }
+      ]
+    }
   }
 };
