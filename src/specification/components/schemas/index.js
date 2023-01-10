@@ -207,6 +207,7 @@ export const schemas = {
   ChangePasswordObject: {
     type: 'object',
     required: [
+      'username',
       'oldPassword',
       'newPassword'
     ],
