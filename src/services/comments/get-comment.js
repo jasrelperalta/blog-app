@@ -8,7 +8,7 @@ export const getComment = async (request, reply) => {
   const { comments } = db.blogs[blogId];
 
   if (!comments[commentId]) {
-    return reply.notFound();
+    return reply.notFound('Comment not found');
   }
 
   return {

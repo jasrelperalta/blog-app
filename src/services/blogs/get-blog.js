@@ -8,7 +8,7 @@ export const getBlog = async (request, reply) => {
   const { blogs } = db;
 
   if (!blogs[id]) {
-    return reply.notFound();
+    return reply.notFound('Blog not found');
   }
 
   return {

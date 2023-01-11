@@ -23,7 +23,7 @@ export const user = {
       }
     ],
     get: {
-      summary: 'Gets user data',
+      summary: 'Get user data',
       operationId: 'getUser',
       responses: {
         200: {
@@ -56,7 +56,7 @@ export const user = {
   },
   '/login': {
     post: {
-      summary: 'Logs in a user',
+      summary: 'Log in a user',
       operationId: 'login',
       requestBody: {
         $ref: '#/components/requestBodies/RequestLogin'
@@ -73,7 +73,7 @@ export const user = {
   },
   '/logout': {
     get: {
-      summary: 'Logs out a user',
+      summary: 'Log out a user',
       operationId: 'logout',
       responses: {
         200: {
@@ -90,7 +90,7 @@ export const user = {
   '/change-password': {
     // put instead of post
     put: {
-      summary: 'Changes own password of user',
+      summary: 'Change own password of user',
       operationId: 'changePassword',
       requestBody: {
         $ref: '#/components/requestBodies/RequestChangePassword'
