@@ -204,7 +204,7 @@ describe('Updating comments of a blog should work', async () => {
       url: `${prefix}/user/${newEditUser.username}`,
       headers: {
         'Content-Type': 'application/json',
-        cookie: cookie3
+        cookie: cookie2
       },
       body: JSON.stringify(newEditUser)
     });
@@ -233,11 +233,51 @@ describe('Updating comments of a blog should work', async () => {
     response.statusCode.must.be.equal(401);
   });
 
-  it('should not edit user data because of wrong path', async () => {
+  it('should edit user data but same username, no first and last name', async () => {
     const newEditUser = {
-      username: anotherNewUser.username,
-      firstName: chance.first(),
-      lastName: chance.last()
+      newUsername: anotherNewUser.username,
+      newFirstName: chance.first(),
+      newLastName: chance.last()
+    };
+
+    const response = await app.inject({
+      method: 'PUT',
+      url: `${prefix}/user/${anotherNewUser.username}`,
+      headers: {
+        'Content-Type': 'application/json',
+        cookie: cookie3
+      },
+      body: JSON.stringify(newEditUser)
+    });
+
+    // should return unauthorized because it's not their account
+    response.statusCode.must.be.equal(200);
+  });
+
+  it('should edit user data but same username, no last name', async () => {
+    const newEditUser = {
+      newUsername: anotherNewUser.username,
+      newFirstName: chance.first()
+    };
+
+    const response = await app.inject({
+      method: 'PUT',
+      url: `${prefix}/user/${anotherNewUser.username}`,
+      headers: {
+        'Content-Type': 'application/json',
+        cookie: cookie3
+      },
+      body: JSON.stringify(newEditUser)
+    });
+
+    // should return unauthorized because it's not their account
+    response.statusCode.must.be.equal(200);
+  });
+
+  it('should edit user data but same username, no first name', async () => {
+    const newEditUser = {
+      newUsername: anotherNewUser.username,
+      newLastName: chance.last()
     };
 
     const response = await app.inject({

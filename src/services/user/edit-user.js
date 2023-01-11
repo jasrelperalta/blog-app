@@ -23,8 +23,8 @@ export const editUser = async (request, reply) => {
 
   if (username !== newUsername) {
     db.users[newUsername] = db.users[username];
-    db.users[newUsername].firstName = newFirstName || db.users[newUsername].firstName;
-    db.users[newUsername].lastName = newLastName || db.users[newUsername].lastName;
+    db.users[newUsername].firstName = newFirstName || db.users[username].firstName;
+    db.users[newUsername].lastName = newLastName || db.users[username].lastName;
     db.users[newUsername].updatedDate = new Date().getTime();
     // delete old user so it won't duplicate
     delete db.users[username];
