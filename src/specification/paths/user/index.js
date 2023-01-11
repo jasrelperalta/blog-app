@@ -17,17 +17,34 @@ export const user = {
     }
   },
   '/user/:userId': {
+    parameters: [
+      {
+        $ref: '#/components/parameters/UserParameterId'
+      }
+    ],
     get: {
-      summary: 'Gets user data',
+      summary: 'Get user data',
       operationId: 'getUser',
-      parameters: [
-        {
-          $ref: '#/components/parameters/UserParameterId'
-        }
-      ],
       responses: {
         200: {
           $ref: '#/components/responses/SuccessfulUserDataResponse'
+        }
+      },
+      security: [
+        {
+          cookieAuth: []
+        }
+      ]
+    },
+    put: {
+      summary: 'Edit own user data',
+      operationId: 'editUser',
+      requestBody: {
+        $ref: '#/components/requestBodies/RequestEditUser'
+      },
+      responses: {
+        200: {
+          $ref: '#/components/responses/SuccessfulEditUserDataResponse'
         }
       },
       security: [
@@ -39,7 +56,7 @@ export const user = {
   },
   '/login': {
     post: {
-      summary: 'Logs in a user',
+      summary: 'Log in a user',
       operationId: 'login',
       requestBody: {
         $ref: '#/components/requestBodies/RequestLogin'
@@ -56,8 +73,28 @@ export const user = {
   },
   '/logout': {
     get: {
-      summary: 'Logs out a user',
+      summary: 'Log out a user',
       operationId: 'logout',
+      responses: {
+        200: {
+          $ref: '#/components/responses/SuccessfulResponse'
+        }
+      },
+      security: [
+        {
+          cookieAuth: []
+        }
+      ]
+    }
+  },
+  '/change-password': {
+    // put instead of post
+    put: {
+      summary: 'Change own password of user',
+      operationId: 'changePassword',
+      requestBody: {
+        $ref: '#/components/requestBodies/RequestChangePassword'
+      },
       responses: {
         200: {
           $ref: '#/components/responses/SuccessfulResponse'

@@ -8,7 +8,7 @@ export const getUser = async (request, reply) => {
   const { users } = db;
 
   if (!users[userId]) {
-    return reply.notFound();
+    return reply.notFound('User does not exist');
   }
 
   return {

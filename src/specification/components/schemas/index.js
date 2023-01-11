@@ -175,6 +175,26 @@ export const schemas = {
       }
     }
   },
+  EditUserObject: {
+    type: 'object',
+    properties: {
+      username: {
+        type: 'string'
+      },
+      firstName: {
+        type: 'string'
+      },
+      lastName: {
+        type: 'string'
+      },
+      createdDate: {
+        type: 'number'
+      },
+      updatedDate: {
+        type: 'number'
+      }
+    }
+  },
   UserRequestObject: {
     type: 'object',
     required: [
@@ -201,6 +221,39 @@ export const schemas = {
       },
       updatedDate: {
         type: 'number'
+      }
+    }
+  },
+  EditUserRequestObject: {
+    type: 'object',
+    properties: {
+      newUsername: {
+        type: 'string'
+      },
+      newFirstName: {
+        type: 'string'
+      },
+      newLastName: {
+        type: 'string'
+      }
+    }
+  },
+  ChangePasswordObject: {
+    type: 'object',
+    required: [
+      'username',
+      'oldPassword',
+      'newPassword'
+    ],
+    properties: {
+      username: {
+        type: 'string'
+      },
+      oldPassword: {
+        type: 'string'
+      },
+      newPassword: {
+        type: 'string'
       }
     }
   },
