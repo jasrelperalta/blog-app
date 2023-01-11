@@ -58,5 +58,15 @@ export const responses = {
         }
       }
     }
+  },
+  SuccessfulEditUserDataResponse: {
+    description: 'Successful edit user data response',
+    content: {
+      'application/json': {
+        schema: {
+          $ref: '#/components/schemas/EditUserObject'
+        }
+      }
+    }
   }
 };

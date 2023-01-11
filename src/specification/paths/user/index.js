@@ -44,7 +44,7 @@ export const user = {
       },
       responses: {
         200: {
-          $ref: '#/components/responses/SuccessfulUserDataResponse'
+          $ref: '#/components/responses/SuccessfulEditUserDataResponse'
         }
       },
       security: [
