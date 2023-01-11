@@ -30,6 +30,15 @@ describe('Updating comments of a blog should work', async () => {
 
   let cookie2 = '';
 
+  const anotherNewUser = {
+    username: chance.email({ domain: 'example.com' }),
+    firstName: chance.first(),
+    lastName: chance.last(),
+    password: chance.string({ length: 10 })
+  };
+
+  let cookie3 = '';
+
   before(async () => {
     app = await build({
       forceCloseConnections: true
@@ -75,7 +84,28 @@ describe('Updating comments of a blog should work', async () => {
     // expect dates to be not null
     anotherResult.createdDate.must.not.be.null();
     anotherResult.updatedDate.must.not.be.null();
+
+    // another user new created
+    const anotherNewResponse = await app.inject({
+      method: 'POST',
+      url: `${prefix}/user`,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(anotherNewUser)
+    });
+
+    // checks if status code is 200
+    anotherNewResponse.statusCode.must.be.equal(200);
+    const anotherNewResult = await anotherNewResponse.json();
+    anotherNewResult.username.must.be.equal(anotherNewUser.username);
+    anotherNewResult.firstName.must.be.equal(anotherNewUser.firstName);
+    anotherNewResult.lastName.must.be.equal(anotherNewUser.lastName);
+    // expect dates to be not null
+    anotherNewResult.createdDate.must.not.be.null();
+    anotherNewResult.updatedDate.must.not.be.null();
   });
+
   it('login should work', async () => {
     const response = await app.inject({
       method: 'POST',
@@ -115,6 +145,25 @@ describe('Updating comments of a blog should work', async () => {
     anotherResponse.statusCode.must.be.equal(200);
 
     cookie2 = anotherResponse.headers['set-cookie'];
+    // another user login
+    const anotherNewResponse = await app.inject({
+      method: 'POST',
+      url: `${prefix}/login`,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(
+        {
+          username: anotherNewUser.username,
+          password: anotherNewUser.password
+        }
+      )
+    });
+
+    // checks if status code is 200
+    anotherNewResponse.statusCode.must.be.equal(200);
+
+    cookie3 = anotherNewResponse.headers['set-cookie'];
   });
 
   it('should edit user data with new username, first name, and last name', async () => {
@@ -155,7 +204,7 @@ describe('Updating comments of a blog should work', async () => {
       url: `${prefix}/user/${newEditUser.username}`,
       headers: {
         'Content-Type': 'application/json',
-        cookie: cookie2
+        cookie: cookie3
       },
       body: JSON.stringify(newEditUser)
     });
@@ -172,16 +221,37 @@ describe('Updating comments of a blog should work', async () => {
 
     const response = await app.inject({
       method: 'PUT',
-      url: `${prefix}/user/${anotherUser.username}`,
+      url: `${prefix}/user/${anotherNewUser.username}`,
       headers: {
         'Content-Type': 'application/json',
-        cookie
+        cookie: cookie2
       },
       body: JSON.stringify(newEditUser)
     });
 
     // should return unauthorized because it's not their account
     response.statusCode.must.be.equal(401);
+  });
+
+  it('should not edit user data because of wrong path', async () => {
+    const newEditUser = {
+      username: anotherNewUser.username,
+      firstName: chance.first(),
+      lastName: chance.last()
+    };
+
+    const response = await app.inject({
+      method: 'PUT',
+      url: `${prefix}/user/${anotherNewUser.username}`,
+      headers: {
+        'Content-Type': 'application/json',
+        cookie: cookie3
+      },
+      body: JSON.stringify(newEditUser)
+    });
+
+    // should return unauthorized because it's not their account
+    response.statusCode.must.be.equal(200);
   });
 
   after(async () => {

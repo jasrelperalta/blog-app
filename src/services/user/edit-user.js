@@ -14,6 +14,12 @@ export const editUser = async (request, reply) => {
   if (username !== pathUsername) {
     return reply.unauthorized('Not the owner account');
   }
+  // no change in username
+  if (username === newUsername) {
+    db.users[username].firstName = newFirstName || db.users[username].firstName;
+    db.users[username].lastName = newLastName || db.users[username].lastName;
+    db.users[username].updatedDate = new Date().getTime();
+  }
 
   if (username !== newUsername) {
     db.users[newUsername] = db.users[username];
@@ -25,12 +31,6 @@ export const editUser = async (request, reply) => {
     // set newUsername to username so only one occurence of username
     // and no error in what's being returned in difference in response
     username = newUsername;
-  }
-  // no change in username
-  if (username === newUsername) {
-    db.users[username].firstName = newFirstName || db.users[username].firstName;
-    db.users[username].lastName = newLastName || db.users[username].lastName;
-    db.users[username].updatedDate = new Date().getTime();
   }
 
   await saveDB(db);
